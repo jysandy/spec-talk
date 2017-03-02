@@ -17,19 +17,85 @@
 (def bad-request (-> (res/response {:error "Bad request"})
                      (res/status 400)))
 
-(defn- conform-or-nil [spec value]
-  (when (s/valid? spec value)
-    (s/conform spec value)))
-
 (defn left-pad-handler
-  [{:keys [params] :as request}]
-  (try
-    (if-let [{:keys [string padding amount]} (conform-or-nil ::core-spec/left-pad-handler-params
-                                                             (update params :amount #(Integer/parseInt %)))]
-      (res/response {:padded-string (left-pad string padding amount)})
-      bad-request)
-    (catch java.lang.NumberFormatException e
-      bad-request)))
+  [{:keys [params]}]
+  (let [{:keys [string padding amount]}
+        (update params :amount #(Integer/parseInt %))]
+    (res/response {:padded-string (left-pad string padding amount)})))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(comment
+
+  (defn- conform-or-nil [spec value]
+    (when (s/valid? spec value)
+      (s/conform spec value)))
+
+  (defn left-pad-handler
+    [{:keys [params] :as request}]
+    (try
+      (if-let [{:keys [string padding amount]}
+               (conform-or-nil ::core-spec/left-pad-handler-params
+                               (update params :amount #(Integer/parseInt %)))]
+        (res/response {:padded-string (left-pad string padding amount)})
+        bad-request)
+      (catch java.lang.NumberFormatException e
+        bad-request))))
+
+
+
+
+
+
+
+
+
+
+
+
+;; -----------------------------------------------
 
 (def app-handler
   (make-handler ["/" {"left-pad" left-pad-handler}]))
