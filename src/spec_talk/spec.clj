@@ -315,3 +315,89 @@
   (s/def ::params
     (s/with-gen ::params-base
                 params-gen)))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(def links
+  {"https://clojure.org/about/spec"  "spec rationale"
+   "https://clojure.org/guides/spec" "spec guide"
+   "http://left-pad.io/"             "left pad as a service"})
+
+(def see-also
+  ["The spec screencast series on ClojureTV"])
+
+;; That's all, folks!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
